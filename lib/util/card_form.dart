@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:test_app/controller/bank_controller.dart';
-
 
 class CardForm extends StatefulWidget {
   final String bankName;
@@ -62,7 +63,9 @@ class _CardFormState extends State<CardForm> {
               const SizedBox(height: 8),
               TextFormField(
                 keyboardType: TextInputType.numberWithOptions(),
-                inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
+                inputFormatters: <TextInputFormatter>[
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
                 decoration: InputDecoration(
                   hintText: '1234 5678 9101 1213',
                   border: OutlineInputBorder(
@@ -184,11 +187,16 @@ class _CardFormState extends State<CardForm> {
                         // controller.cardNumberDisplay.value =
                         //     ''; // Jika pakai debounce
                         // controller.cardholderDisplay.value =
-                            ''; // Jika pakai debounce
+                        ''; // Jika pakai debounce
 
                         // Tampilkan snackbar
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Form Cancelled')),
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(content: Text('Form Cancelled')),
+                        // );
+                        Fluttertoast.showToast(
+                          msg: "Form Cancelled",
+                          toastLength: Toast.LENGTH_SHORT,
+                          gravity: ToastGravity.BOTTOM,
                         );
                       },
                       style: ElevatedButton.styleFrom(
@@ -205,10 +213,20 @@ class _CardFormState extends State<CardForm> {
                     ),
                     const SizedBox(width: 20),
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        final prefs = await SharedPreferences.getInstance();
+                        await prefs.setString(
+                          'holderName',
+                          controller.cardholder.value,
+                        );
                         if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Submitting form')),
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(content: Text('Submitting form')),
+                          // );
+                          Fluttertoast.showToast(
+                            msg: "Successfully Submit and Save Data",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
                           );
                         }
                       },
