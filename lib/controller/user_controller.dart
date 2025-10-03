@@ -63,7 +63,6 @@ class UserController extends GetxController {
       
       var title = data['title'];
       var body = data['body'];
-      var userId = data['userId'];
 
       var result = 'Successfully Create User! \n\nName: ${title}. \nJob: ${body}.  ';
       
