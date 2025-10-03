@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:test_app/screens/card_page.dart';
 import 'package:test_app/util/emoticon_face.dart';
 import 'package:test_app/util/card_type.dart';
 import 'package:test_app/util/exit_app.dart';
+import 'package:test_app/util/bottom_navigation.dart';
 import 'package:test_app/widgets/clock_widget.dart';
 import 'package:flutter/services.dart';
 
@@ -47,33 +47,7 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.blue[800],
         bottomNavigationBar: SizedBox(
           height: 60,
-          child: BottomNavigationBar(
-            currentIndex: _currentIndex, // state untuk tab aktif
-            onTap: (index) {
-              if (index == 1) {
-                // misal Card tab
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>
-                        CardPage(typeCard: "BCA", bankName: "Debit Card"),
-                  ),
-                );
-              } else {
-                setState(() {
-                  _currentIndex = index; // tab lainnya
-                });
-              }
-            },
-            backgroundColor: Colors.white,
-            selectedItemColor: Colors.blue[800],
-            unselectedItemColor: Colors.grey,
-            items: [
-              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-              BottomNavigationBarItem(icon: Icon(Icons.credit_card_outlined), label: 'Card'),
-              // BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            ],
-          ),
+          child: BottomNavigation(currentIndex: _currentIndex,)
         ),
         body: SafeArea(
           child: Stack(
