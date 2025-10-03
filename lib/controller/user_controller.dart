@@ -38,8 +38,7 @@ class UserController extends GetxController {
         location.value = '${locationCity}, ${locationCountry}';
         // print(location.value);
 
-        dateOfBirth.value = user['dob']['date']; 
-
+        dateOfBirth.value = user['dob']['date'];
       } else {
         Get.snackbar("Error", "Gagal ambil data: ${response.statusCode}");
       }
@@ -47,6 +46,30 @@ class UserController extends GetxController {
       Get.snackbar("Error", e.toString());
     } finally {
       isLoading(false);
+    }
+  }
+
+  Future<String> createPost(String title, String body) async {
+    var apiUrlPost = dotenv.env['API_URL_POST'] ?? '';
+
+    final response = await http.post(
+      Uri.parse(apiUrlPost),
+      headers: {"Content-Type": "application/json; charset=UTF-8"},
+      body: jsonEncode({'title': title, 'body': body, 'userId': 1}),
+    );
+
+    if (response.statusCode == 201) {
+      var data = jsonDecode(response.body);
+      
+      var title = data['title'];
+      var body = data['body'];
+      var userId = data['userId'];
+
+      var result = 'Successfully Create User! \n\nName: ${title}. \nJob: ${body}.  ';
+      
+      return result;
+    } else {
+      return 'Error: ${response.statusCode}';
     }
   }
 }

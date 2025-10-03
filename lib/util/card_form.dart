@@ -71,6 +71,13 @@ class _CardFormState extends State<CardForm> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2,
+                    ), // warna saat aktif
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 4,
                     horizontal: 12,
@@ -98,6 +105,13 @@ class _CardFormState extends State<CardForm> {
                 decoration: InputDecoration(
                   hintText: 'Input Your Cardholder Name',
                   border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2,
+                    ), // warna saat aktif
                     borderRadius: BorderRadius.circular(6),
                   ),
                   contentPadding: const EdgeInsets.symmetric(
@@ -129,6 +143,13 @@ class _CardFormState extends State<CardForm> {
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(6),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2,
+                    ), // warna saat aktif
+                    borderRadius: BorderRadius.circular(6),
+                  ),
                   contentPadding: const EdgeInsets.symmetric(
                     vertical: 4,
                     horizontal: 12,
@@ -156,6 +177,13 @@ class _CardFormState extends State<CardForm> {
                 decoration: InputDecoration(
                   hintText: 'xxx',
                   border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      color: Colors.blue,
+                      width: 2,
+                    ), // warna saat aktif
                     borderRadius: BorderRadius.circular(6),
                   ),
                   contentPadding: const EdgeInsets.symmetric(

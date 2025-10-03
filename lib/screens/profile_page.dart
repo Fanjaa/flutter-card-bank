@@ -3,8 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:test_app/controller/user_controller.dart';
 import 'package:test_app/util/bottom_navigation.dart';
+import 'package:test_app/util/button.dart';
 import 'package:test_app/util/exit_app.dart';
 import 'package:test_app/util/profile_header.dart';
+import 'package:test_app/screens/create_user_page.dart';
 import 'package:test_app/util/profile_info.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -21,8 +23,8 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     super.initState();
-    userC = widget.userC; 
-    userC.fetchUsers(); 
+    userC = widget.userC;
+    userC.fetchUsers();
   }
 
   Widget build(BuildContext context) {
@@ -64,33 +66,32 @@ class _ProfilePageState extends State<ProfilePage> {
                 child: Column(
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        ElevatedButton.icon(
+                        Button(
+                          text: 'Edit Profile',
+                          icon: Icons.create,
+                          color: Colors.blue[800],
+                          backgroundColor: Colors.white,
+                          side: BorderSide(color: Colors.blue, width: 1),
                           onPressed: () {
-                            // ke halaman edit profile
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => CreateUserPage(),
+                              ),
+                            );
+                          },
+                        ),
+                        Button(
+                          text: 'Get Profile',
+                          icon: Icons.refresh_outlined,
+                          color: Colors.white,
+                          backgroundColor: Colors.blue[800],
+                          side: BorderSide.none,
+                          onPressed: () {
                             userC.fetchUsers();
                           },
-                          icon: const Icon(
-                            Icons.refresh_outlined,
-                            color: Colors.white,
-                          ),
-                          label: const Text(
-                            // "Edit Profile",
-                            "Get Profile",
-                            style: TextStyle(fontSize: 16, color: Colors.white),
-                          ),
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blue[800],
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 30,
-                              vertical: 10,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            elevation: 5,
-                          ),
                         ),
                       ],
                     ),
